@@ -5,9 +5,9 @@
 #   only:
 #   - _BRANCH
 
-# options:
-#   logging: CLOUD_LOGGING_ONLY
-#   logsBucket: gs://klouddevops-bucket
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
 
 
 steps:
@@ -17,6 +17,9 @@ steps:
 #   args: ['push', 'us-docker.pkg.dev/kloud-devops-366218/kloud-devops/my-app:latest']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image:latest', '.'] # Add tag :latest
 
 # images:
 # - 'gcr.io/$PROJECT_ID/klouddevops'
