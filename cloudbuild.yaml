@@ -5,18 +5,24 @@
 #   only:
 #   - _BRANCH
 
-options:
-  logging: NONE
+# options:
+#   logging: CLOUD_LOGGING_ONLY
+#   logsBucket: gs://klouddevops-bucket
+
 
 steps:
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['build', '-t', 'us-docker.pkg.dev/kloud-devops-366218/kloud-devops/my-app:latest', '-f', 'Dockerfile', '.']
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', 'us-docker.pkg.dev/kloud-devops-366218/kloud-devops/my-app:latest']
-- name: 'docker'
-  args: ['build','-t','gcr.io/$PROJECT_ID/klouddevops', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image', '.']
 
-images:
-- 'gcr.io/$PROJECT_ID/klouddevops'
+# images:
+# - 'gcr.io/$PROJECT_ID/klouddevops'
+
+- name: 'gcr.io/cloud-builders/dockers'
+  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+
 
 
