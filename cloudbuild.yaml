@@ -22,8 +22,11 @@ steps:
 # images:
 # - 'gcr.io/$PROJECT_ID/klouddevops'
 
-- name: 'gcr.io/cloud-builders/dockers'
-  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+# - name: 'gcr.io/cloud-builders/dockers'
+#   args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image']
+
+images:
+  - 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image' 
 
 
 
