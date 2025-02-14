@@ -1,2 +1,2 @@
-## DevOps Project from the KodeKloud Lab
+## DevOps Project from the KodeKloud Lab Learning
 
