@@ -1,0 +1,20 @@
+# substitutions:
+#   _BRANCH: 'main'
+
+# branches:
+#   only:
+#   - _BRANCH
+
+
+steps:
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'us-docker.pkg.dev/kloud-devops-366218/kloud-devops/my-app:latest', '-f', 'Dockerfile', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'us-docker.pkg.dev/kloud-devops-366218/kloud-devops/my-app:latest']
+- name: 'docker'
+  args: ['build','-t','gcr.io/$PROJECT_ID/Klouddevops', '.']
+
+images:
+- 'gcr.io/$PROJECT_ID/Klouddevops'
+
+
