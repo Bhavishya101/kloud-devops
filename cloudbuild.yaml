@@ -6,9 +6,25 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image', '.']
 
+# Authenticate kubectl - Get credentials for GKE cluster
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    gcloud container clusters get-credentials devops-playground --zone us-central1-c
+
+# Use kubectl for all subsequent Kubernetes operations, each in its own step
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['create', 'namespace', 'kloud-ns']
+
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   args: ['apply', '-f', 'deployment.yaml', '-n', 'my-namespace']
+
 
 images:
   - 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image' 
+
 
 
 
