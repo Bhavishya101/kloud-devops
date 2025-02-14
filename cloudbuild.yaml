@@ -5,6 +5,8 @@
 #   only:
 #   - _BRANCH
 
+options:
+  logging: NONE
 
 steps:
 # - name: 'gcr.io/cloud-builders/docker'
