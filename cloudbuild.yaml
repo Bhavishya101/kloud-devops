@@ -9,16 +9,13 @@ steps:
 # Authenticate kubectl - Get credentials for GKE cluster
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=devops-playground'
-  - 'CLOUDSDK_PROJECT=$PROJECT_ID'
   args:
   - '-c'
   - |
     gcloud container clusters get-credentials devops-playground --zone us-central1-c
+    kubectl config use-context gke_${PROJECT_ID}_us-central1-c_devops-playground
 
-# Set the Kubernetes cluster context
+# #Set the Kubernetes cluster context
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   args:
 #     - 'config'
@@ -30,11 +27,11 @@ steps:
   args: ['create', 'namespace', 'kloud-ns']
 
 # - name: 'gcr.io/cloud-builders/kubectl'
-#   args: ['apply', '-f', 'deployment.yaml', '-n', 'my-namespace']
-
+#   args: ['apply', '-f', 'deployment.yaml', '-n', 'kloud-ns']
 
 images:
   - 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image' 
+
 
 
 
