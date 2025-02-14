@@ -19,14 +19,14 @@ steps:
     gcloud container clusters get-credentials devops-playground --zone us-central1-c
 
 # Set the Kubernetes cluster context
-- name: 'gcr.io/cloud-builders/kubectl'
-  args:
-    - 'config'
-    - 'use-context'
-    - 'gke_us-central1-c_devops-playground'
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   args:
+#     - 'config'
+#     - 'use-context'
+#     - 'gke_us-central1-c_devops-playground'
 
 # Use kubectl for all subsequent Kubernetes operations, each in its own step
-- name: 'namespace'
+- name: 'gcr.io/cloud-builders/kubectl'
   args: ['create', 'namespace', 'kloud-ns']
 
 # - name: 'gcr.io/cloud-builders/kubectl'
