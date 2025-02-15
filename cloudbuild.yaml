@@ -11,17 +11,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image']
 
-# # Set the Cloud sdk
-# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-#   entrypoint: 'gcloud'
-#   args: ['compute', 'instances', 'my-vm-name', '--container-image', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image']
-#   env:
-#   - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-#   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-#   - 'CLOUDSDK_CONTAINER_CLUSTER=devops-playground'
-#   - 'CLOUDSDK_CONTAINER_CLUSTER_LOCATION=us-central1'
-
-
 #Deploy the container Image
 - name: 'gcr.io/cloud-builders/gke-deploy'
   args:
