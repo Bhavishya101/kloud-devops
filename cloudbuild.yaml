@@ -5,21 +5,21 @@ steps:
 
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image-dev', '.']
 
 # Push the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image']
+  args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image-dev']
 
 #Deploy the container Image
 - name: 'gcr.io/cloud-builders/gke-deploy'
   args:
   - run
   - --filename=deployment.yaml
-  - --image=us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image
+  - --image=us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image-dev
   - --location=us-central1-c
   - --cluster=devops-playground
-  - --namespace=kloud-ns
+  - --namespace=kloud-ns-dev
 
 
 # # Authenticate kubectl - Get credentials for GKE cluster
