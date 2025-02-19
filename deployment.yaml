@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-deployment
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: my-app
@@ -14,27 +14,28 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: us-central1-docker.pkg.dev/iac-prd-v1/my-docker-repo/my-image:latest #us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image:latest
+        image: us-central1-docker.pkg.dev/iac-prd-v1/my-docker-repo/my-image-dev:latest #us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/my-image:latest
         ports:
         - containerPort: 5000
         env:
           - name: PORT
             value: "5000"
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-  namespace: kloud-ns
-  labels:
-    app.kubernetes.io/managed-by: my-app
-spec:
-  type: LoadBalancer
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5000
-  selector:
-    app: my-app
+## Disabling temporarily to delete the Loadbalancer
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: my-service
+#   namespace: kloud-ns-dev
+#   labels:
+#     app.kubernetes.io/managed-by: my-app
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - protocol: TCP
+#     port: 80
+#     targetPort: 5000
+#   selector:
+#     app: my-app
 
